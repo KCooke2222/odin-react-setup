@@ -1,7 +1,3 @@
-import "./App.css";
-
-function App() {
-  return <>Hello World</>;
-}
+import App from "./test.jsx";
 
 export default App;
