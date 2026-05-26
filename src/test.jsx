@@ -1,37 +1,48 @@
-import React, { useState } from "react";
-import "./App.css";
+import { useState } from "react";
+import "./test.css";
 
-const COLORS = ["pink", "green", "blue", "yellow", "purple"];
+function Person() {
+  const [person, setPerson] = useState({
+    firstName: "John",
+    lastName: "Jacob",
+    age: 100,
+  });
 
-function App() {
-  const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
-  const [bgChanges, setBGChanges] = useState(0);
+  const handleIncreaseAge = () => {
+    setPerson({ ...person, age: person.age + 1 });
+  };
 
-  const onButtonClick = (color) => () => {
-    setBackgroundColor(color);
-    setBGChanges(bgChanges + 1);
+  const handleFirstNameChange = (e) => {
+    setPerson({ ...person, firstName: e.target.value });
+  };
+
+  const handleLastNameChange = (e) => {
+    setPerson({ ...person, lastName: e.target.value });
   };
 
   return (
-    <div
-      className="App"
-      style={{
-        backgroundColor,
-      }}
-    >
-      <h1>Changes: {bgChanges}</h1>
-      {COLORS.map((color) => (
-        <button
-          type="button"
-          key={color}
-          onClick={onButtonClick(color)}
-          className={backgroundColor === color ? "selected" : ""}
-        >
-          {color}
-        </button>
-      ))}
+    <div className="card">
+      <div className="name-display">
+        {person.firstName} {person.lastName}
+      </div>
+      <div className="age-display">{person.age}</div>
+      <button className="age-btn" onClick={handleIncreaseAge}>
+        + Age
+      </button>
+      <div className="inputs">
+        <input
+          placeholder="First name"
+          value={person.firstName}
+          onChange={handleFirstNameChange}
+        />
+        <input
+          placeholder="Last name"
+          value={person.lastName}
+          onChange={handleLastNameChange}
+        />
+      </div>
     </div>
   );
 }
 
-export default App;
+export default Person;

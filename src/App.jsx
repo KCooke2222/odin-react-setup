@@ -1,3 +1,3 @@
-import App from "./test.jsx";
+import Person from "./test.jsx";
 
-export default App;
+export default Person;
